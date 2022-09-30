@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Category;
 use App\Entity\Livres;
 use App\Entity\User;
 use Faker\Factory;
@@ -37,7 +38,12 @@ class LivreFixture extends Fixture
                 ->setPassword($this->passwordEncoder->encodePassword($user,"azerty"))
                 ->setAvatar("https://picsum.photos/id/237/200/300");
                 $manager->persist($user);
-                for($j=0;$j<rand(2,4);$j++)
+                for($k=0;$k<3;$k++)
+                {
+                    $category = new Category();
+                    $category->setNom($faker->safeColorName());
+                    $manager->persist($category);
+                    for($j=0;$j<rand(2,4);$j++)
                 {
                     $livres = new Livres();
                     $livres->setAuteur($faker->name())
@@ -45,7 +51,9 @@ class LivreFixture extends Fixture
                         ->setDateSortie($faker->dateTimeBetween($startDate = '-30 years',
                         $endDate = "now"));
                     $livres->setUser($user);
+                    $livres->setCategory($category);
                     $manager->persist($livres);
+                }
                 }
         }
         $manager->flush();

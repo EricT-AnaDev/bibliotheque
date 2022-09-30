@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajout{% endblock %}
+
+{% block body %}
+{{form_start(formulaireInscription)}}
+<div id="insForm">
+    <br/>
+<button type="button" class="" ><a href="{{path('app_login')}}">Vous avez déjà un compte</a></button> 
+{# nom #}
+<div class="form-group">
+    {{ form_label(formulaireInscription.nom, 'Nom', {'label_attr': {'class': 'form-label mt-4'}}) }}
+    {{form_widget (formulaireInscription.nom,{'attr':{"class":"form-control"}})}}
+</div>
+{# prenom #}
+<div class="form-group">
+    {{ form_label(formulaireInscription.prenom, 'Prénom', {'label_attr': {'class': 'form-label mt-4'}}) }}
+    {{form_widget (formulaireInscription.prenom,{'attr':{"class":"form-control"}})}}
+</div>
+{# birthdate #}
+<div class="form-group">
+    {{ form_label(formulaireInscription.birthDate, 'Date', {'label_attr': {'class': 'form-label mt-4'}}) }}
+    {{form_widget (formulaireInscription.birthDate,{'attr':{"class":"form-control"}})}}
+</div>
+{# email #}
+<div class="form-group">
+    {{ form_label(formulaireInscription.email, 'Email', {'label_attr': {'class': 'form-label mt-4'}}) }}
+    {{form_widget (formulaireInscription.email,{'attr':{"class":"form-control"}})}}
+</div>
+{# password #}
+<div class="form-group">
+    {{ form_label(formulaireInscription.password, 'Mot de passe', {'label_attr': {'class': 'form-label mt-4'}}) }}
+    {{form_widget (formulaireInscription.password,{'attr':{"class":"form-control"}})}}
+</div>
+{# confirmpassword #}
+<div class="form-group">
+    {{ form_label(formulaireInscription.confirmPassword, 'Confirmer le mot de passe', {'label_attr': {'class': 'form-label mt-4'}}) }}
+    {{form_widget (formulaireInscription.confirmPassword,{'attr':{"class":"form-control"}})}}
+</div>
+{# adresse #}
+<div class="form-group">
+    {{ form_label(formulaireInscription.adresse, 'Adresse', {'label_attr': {'class': 'form-label mt-4'}}) }}
+    {{form_widget (formulaireInscription.adresse,{'attr':{"class":"form-control"}})}}
+</div>
+{# code postal #}
+<div class="form-group">
+    {{ form_label(formulaireInscription.codeP, 'Code Potal', {'label_attr': {'class': 'form-label mt-4'}}) }}
+    {{form_widget (formulaireInscription.codeP,{'attr':{"class":"form-control"}})}}
+</div>
+<div>
+{{form_widget(formulaireInscription)}}
+<br/>
+</div>
+
+<button type="submit" class="btn btn-warning">Inscription</button>
+</div>
+{{form_end(formulaireInscription)}}
+{% endblock %}

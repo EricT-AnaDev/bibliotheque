@@ -1,0 +1,23 @@
+body {
+    background-image: url("../image/bibbg.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center;
+   
+}
+#insForm {
+    width: 60%;
+    margin: 5% auto;
+}
+#livreCard{
+    width: 90%;
+    margin: 5% auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.card{
+    width: 40%;
+    margin: 0.5rem;
+}

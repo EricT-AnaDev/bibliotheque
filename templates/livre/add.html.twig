@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajout{% endblock %}
+
+{% block body %}
+
+<div id="insForm">
+    {{form_start(formulaireLivres)}}
+    {# titre #}
+    <div class="form-group">
+        {{ form_label(formulaireLivres.titre, 'Titre', {'label_attr': {'class': 'form-label mt-4'}}) }}
+        {{form_widget (formulaireLivres.titre,{'attr':{"class":"form-control"}})}}
+    </div>
+    {# auteur #}
+    <div class="form-group">
+        {{ form_label(formulaireLivres.auteur, 'Auteur', {'label_attr': {'class': 'form-label mt-4'}}) }}
+        {{form_widget (formulaireLivres.auteur,{'attr':{"class":"form-control"}})}}
+    </div>
+    {# date de sortie #}
+    <div class="form-group">
+        {{ form_label(formulaireLivres.dateSortie, 'Date de sortie', {'label_attr': {'class': 'form-label mt-4'}}) }}
+        {{form_widget (formulaireLivres.dateSortie,{'attr':{"class":"form-control"}})}}
+    </div>
+     {# category #}
+     <div class="form-group">
+        {{ form_label(formulaireLivres.category, 'Category', {'label_attr': {'class': 'form-label mt-4'}}) }}
+        {{form_widget (formulaireLivres.category,{'attr':{"class":"form-control"}})}}
+    </div>
+    <br/>
+   {% if mode %}
+    <button type="submit" class="btn btn-warning">Modifier un livre</button>
+    {%else%}
+    <button type="submit" class="btn btn-warning">Ajouter un livre</button>
+    {%endif%}
+    {{form_end(formulaireLivres)}}
+</div>
+
+<br/>
+{% endblock %}

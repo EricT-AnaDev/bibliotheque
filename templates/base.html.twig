@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+    {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+    <link rel="stylesheet" href="https://bootswatch.com/5/vapor/bootstrap.min.css">
+    <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
+    <link rel="stylesheet" href="https://fontawesome.com/icons">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" 
+    crossorigin="anonymous"></script>
+    
+    {% block stylesheets %}
+    {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+
+    {% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
+    {% endblock %}
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Mediathèque</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01"
+                aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{path('app_home')}}">Home
+                            <span class="visually-hidden">(current)</span>
+                        </a>
+                    </li>
+                    {% if app.user %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa-solid fa-user"></i>Profil</a>
+                        <div class="dropdown-menu"> 
+                        {% if is_granted('ROLE_ADMIN')%}
+                          <a class="dropdown-item" href=" {{ path('app_admin') }}">Admin (Private access)</a>
+                          <a class="dropdown-item" href="#">Ajout d'un livre</a>
+                          <a class="dropdown-item" href="#">Modification d'un livre</a>
+                          <a class="dropdown-item" href="#">Suppression d'un livre</a>
+                        {% endif %}
+                          <a class="dropdown-item" href=" "></a>
+                          <a class="dropdown-item" href="{{path('livres')}}">Afficher les livres</a>
+                          <div class="dropdown-divider"></div>
+                          <a class="dropdown-item" href="{{ path('app_logout') }}">Deconnexion</a>
+                        </div>
+                      </li>
+                    {%else%}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{path('inscription')}}">Connexion / Inscription</a>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+    {% block body %}{% endblock %}
+</body>
+
+</html>

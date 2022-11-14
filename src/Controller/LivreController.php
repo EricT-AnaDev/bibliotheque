@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Category;
 use App\Repository\LivresRepository;
 use App\Entity\Livres;
 use App\Form\LivresType;
@@ -67,4 +68,15 @@ class LivreController extends AbstractController
         $om->flush();
         return $this->redirectToRoute('livres');
     }
+    /**
+     * @Route("/categoryshowLivres/{id}", name="showCat")
+     */
+    public function findLivreByCategory(ManagerRegistry $doctrine, Category $category, $id){
+        $category=$doctrine->getRepository(Category::class);
+        $livres=$category->findBookByCategory($id);
+        return $this->render('livre/cat.html.twig',[
+            'cat'=>$livres
+        ]);
+    }
+
 }  

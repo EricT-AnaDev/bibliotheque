@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Livres{% endblock %}
+
+{% block body %}
+{%if is_granted("ROLE_ADMIN")%}
+    <button class="btn btn-secondary"> <a href="{{path('ajoutLivre')}}">Ajouter un livre</a></button>
+  {% endif %}
+<div id="livreCard">
+  {% for livre in cat%}
+  <div class="card text-white bg-info mb-3" style="max-width: 20rem;">
+    <div class="card-header">Information du livre</div>
+    <div class="card-body">
+      <h4 class="card-title">Le titre du livre est : {{livre.titre}} </h4>
+      <h4 class="card-title">L'auteur du livre est : {{livre.auteur}} </h4>
+        card's content.</p>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

@@ -20,7 +20,7 @@ class Category
     private $id;
 
     /**
-     * @ORM\OneToMany(targetEntity=livres::class, mappedBy="category")
+     * @ORM\OneToMany(targetEntity=Livres::class, mappedBy="category")
      */
     private $livre;
 
@@ -40,14 +40,14 @@ class Category
     }
 
     /**
-     * @return Collection<int, livres>
+     * @return Collection<int, Livres>
      */
     public function getLivre(): Collection
     {
         return $this->livre;
     }
 
-    public function addLivre(livres $livre): self
+    public function addLivre(Livres $livre): self
     {
         if (!$this->livre->contains($livre)) {
             $this->livre[] = $livre;
@@ -57,7 +57,7 @@ class Category
         return $this;
     }
 
-    public function removeLivre(livres $livre): self
+    public function removeLivre(Livres $livre): self
     {
         if ($this->livre->removeElement($livre)) {
             // set the owning side to null (unless already changed)
